@@ -1,32 +1,48 @@
+<!--  -->
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div class="hidden">
+    <header-title></header-title>
+    <router-view></router-view>
+    <van-tabbar v-model="active" active-color="#d43c33" route>
+      <van-tabbar-item icon="home-o"  to="/">主页</van-tabbar-item>
+      <van-tabbar-item icon="search"  to="/video">视频</van-tabbar-item>
+      <van-tabbar-item icon="friends-o"  to="/person">个人中心</van-tabbar-item>
+    </van-tabbar>
   </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+import { Tabbar, TabbarItem } from 'vant';
+import headerTitle from './components/headerTitle.vue'
+export default {
+  data () {
+    return {
+      active: 0
+    };
+  },
+
+  components: {
+    vanTabbar:Tabbar,
+    vanTabbarItem:TabbarItem,
+    headerTitle
+  },
+
+  computed: {},
+
+  created () {
+    
+  },
+
+  mounted () {
+    
+  },
+
+  methods: {
+    
+  },
+  
 }
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+</script>
+<style lang='scss' scoped>
 </style>
