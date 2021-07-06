@@ -11,7 +11,6 @@ export default new Vuex.Store({
   mutations: {
     headerTitleChange(state,newTitle) {
       state.title = newTitle
-      console.log('aaa')
     }
   },
   actions: {

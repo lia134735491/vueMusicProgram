@@ -26,7 +26,9 @@ export default {
   mounted () {
     
   },
-
+  // beforeRouterLeave(to,from,next) {
+  //   this.$store.commit
+  // },
   methods: {}
 }
 
@@ -34,8 +36,12 @@ export default {
 <style lang='scss' scoped>
     div {
         width: 100%;
+        height: 80px;
+        line-height: 80px;
         position: relative;
-        background-color: red;
+        background-color: #d43c33;
         text-align: center;
+        font-size: 18px;
+        color: white;
     }
 </style>

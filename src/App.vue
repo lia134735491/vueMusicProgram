@@ -2,7 +2,9 @@
 <template>
   <div class="hidden">
     <header-title></header-title>
-    <router-view></router-view>
+    <transition name="ll">
+      <router-view></router-view>
+    </transition>
     <van-tabbar v-model="active" active-color="#d43c33" route>
       <van-tabbar-item icon="home-o"  to="/">主页</van-tabbar-item>
       <van-tabbar-item icon="search"  to="/video">视频</van-tabbar-item>
@@ -45,4 +47,7 @@ export default {
 
 </script>
 <style lang='scss' scoped>
+.hidden {
+  overflow: hidden;
+}
 </style>

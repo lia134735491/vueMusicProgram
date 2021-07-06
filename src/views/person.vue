@@ -5,10 +5,10 @@
       <img class="bg" src="../../public/images/personal/bgImg2.jpg">
       <div class="user-info-box" @click="toLogin">
         <div class="portrait-box">
-          <img class="portrait" src='../../public/images/personal/missing-face.png'>
+          <img class="portrait" :src="headerPhoto">
         </div>
         <div class="info-box">
-          <span class="username">游客</span>
+          <span class="username">{{userInfo.nickname?userInfo.nickname: '游客'}}</span>
         </div>
       </div>
 
@@ -28,10 +28,7 @@
     </div>
     <!-- <div
       class="cover-container"
-      bindtouchstart="handleTouchStart"
-      bindtouchmove="handleTouchMove"
-      bindtouchend="handleTouchEnd"
-      style="transform: {{coverTransform}}; transition: {{coveTransition}}"
+      style="{transform: coverTransform ,transition: coveTransition}"
     >
       <img class="arc" src="/static/images/personal/arc.png">
 
@@ -58,7 +55,7 @@
         <div class="recentPlayContainer">
           <span class="title">最近播放</span>
 
-          <scroll-div wx:if="{{recentPlayList.length}}" scroll-x class="recentScroll" enable-flex>
+          <scroll-div if="{{recentPlayList.length}}" scroll-x class="recentScroll" enable-flex>
             <div class="recentItem" wx:for="{{recentPlayList}}" wx:key="{{id}}">
               <image src="{{item.song.al.picUrl}}"></image>
             </div>
@@ -82,26 +79,30 @@
         </div>
       </div>
     </div> -->
-    <login :control="show"></login>
   </div>
 </template>
 
 <script>
-import login from './login.vue'
+
 export default {
   name: 'person',
   data () {
     return {
       userInfo:{},
-      show: false
+      // coverTransform: `translateY(0rpx)`,
+      // coveTransition: 'transform 1s linear'
     };
   },
 
   components: {
-    login
+    
   },
 
-  computed: {},
+  computed: {
+    headerPhoto() {
+      return this.userInfo.avatarUrl?this.userInfo.avatarUrl:'../../static/images/personal/missing-face.png'
+    },
+  },
 
   created () {
     this.$store.commit('headerTitleChange','个人中心')
@@ -115,8 +116,9 @@ export default {
 
   methods: {
     toLogin() {
-      this.show = !this.show
-    }
+      this.$router.push('/login')  
+    },
+    
     // 获取用户播放记录
     // async getUserPlayList(userId) {
     //   let userListData = await this.axios({
@@ -134,7 +136,7 @@ export default {
 </script>
 <style lang='scss' scoped>
   .personalContainer {
-    overflow: hidden;
+    // overflow: hidden;
     width: 100%;
     height: 100%;
     position: relation;

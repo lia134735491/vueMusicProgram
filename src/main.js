@@ -5,9 +5,9 @@ import store from './store'
 import 'amfe-flexible'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-// import { Lazyload } from 'vant'
-// import './assets/css/normalize.css'
-// Vue.use(Lazyload)
+import './assets/css/normalize.css'
+import animated from 'animate.css' 
+Vue.use(animated)
 Vue.use(VueAxios, axios)
 
 Vue.config.productionTip = false

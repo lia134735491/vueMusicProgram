@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import index from '@/views/index.vue'
 import video from '@/views/video.vue'
 import person from '@/views/person.vue'
-import login from '@/views/login.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -13,7 +13,10 @@ const routes = [
     component: index,
     meta: {
       title: '黑皮音乐'
-    }
+    },
+    children: [
+      
+    ]
   },
   {
     path: '/video',
@@ -29,11 +32,19 @@ const routes = [
     component: person,
     meta: {
       title: '个人中心'
-    }
+    },
   },
   {
     path: '/login',
-    components: login
+    name: 'login',
+    component: ()=>import('../views/testLogin.vue'),
+    meta: {
+      title: '登录中心'
+    }
+  },
+  {
+    path: '/recommendSong',
+    component: ()=>import('@/views/recommendSong.vue')
   }
   // {
   //   path: '/about',

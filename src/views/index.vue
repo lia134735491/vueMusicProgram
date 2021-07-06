@@ -7,7 +7,11 @@
       </van-swipe-item>
     </van-Swipe>
     <div class="navContainer">
-      <div class="navItem">
+      <!-- <router-link class="navItem">
+        <span class="iconfont icon--damuzhi"></span>
+        <span>每日推荐</span>
+      </router-link> -->
+      <div class="navItem" @click="iflogin">
         <span class="iconfont icon--damuzhi"></span>
         <span>每日推荐</span>
       </div>
@@ -55,7 +59,9 @@
           </div>
         </div>
     </div>
-    
+    <transition name="ll">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -81,17 +87,13 @@ export default {
   computed: {},
 
   created () {
-    console.log(this.$route.matched[0].meta)
     this.getBannerList();
     this.recommendList();
     this.paihangbang()
-    console.log(navigator.userAgent)
-    
   },
 
   mounted () {
     this.recommendScroll()
-    console.log(document.getElementsByClassName('scrollItem').length)
   },
 
   methods: {
@@ -162,6 +164,12 @@ export default {
       recommend.addEventListener('touchend',function() {
         distanceTatol = move
       })
+    },
+
+    // 判断是否登录并且跳转到每日推荐页
+    iflogin() {
+      this.$router.push('/recommendSong')
+
     }
   }
 }
