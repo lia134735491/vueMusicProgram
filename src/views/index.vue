@@ -111,7 +111,12 @@ export default {
     },
 
     // 获取推荐歌单数据
+
     async recommendList() {
+//       let recommendListData = await this.request('/personalized',{
+//       limit: 10
+//       })
+// this.recommendData = recommendListData.data.result
       let recommendListData = await this.axios({
         url:'/personalized',
         baseURL: "http://localhost:3000",

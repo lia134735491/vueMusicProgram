@@ -65,15 +65,15 @@ export default {
   methods: {
     // 获取每日推荐的数据
     async getRecommendList() {
-        let recommendListData = this.axios({
-            baseURL: "http://localhost:3000",
-            url: '/recommend/songs',
-            headers:{
-                cookie:localStorage.getItem('cookies')?localStorage.getItem('cookies').find(item=>item.indexOf('MUSIC_U')!==-1):''
-            }
-        })
-        this.recommendList = recommendListData.data.recommend
-        console.log(this.recommendList)
+        // let recommendListData = this.axios({
+        //     baseURL: "http://localhost:3000",
+        //     url: '/recommend/songs',
+        //     headers:{
+        //         cookie:localStorage.getItem('cookies')?localStorage.getItem('cookies').find(item=>item.indexOf('MUSIC_U')!==-1):''
+        //     }
+        // })
+        // this.recommendList = recommendListData.data.recommend
+        // console.log(this.recommendList)
     }
   }
 }

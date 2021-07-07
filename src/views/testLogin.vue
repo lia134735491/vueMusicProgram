@@ -86,20 +86,30 @@ export default {
         })
         return
       }
-      let result = await this.axios({
-         baseURL: "http://localhost:3000",
-         url: '/login/cellphone',
-         params: {
-          phone: this.user, 
-          password: this.password,
-          isLogin:true
-        },
+
+      
+      let result = await this.request('/login/cellphone',{
+        phone: this.user, 
+        password: this.password,
+        isLogin:true
       })
-      localStorage.setItem('cookies',result.cookies)
-      if(result.data.code==200) {
-        localStorage.setItem('userInfo',JSON.stringify(result.data.profile))
-        this.$router.push('/person')
-      }
+      console.log(result)
+      
+      // let result = await this.axios({
+      //    baseURL: "http://localhost:3000",
+      //    url: '/login/cellphone',
+      //    params: {
+      //     phone: this.user, 
+      //     password: this.password,
+      //     isLogin:true
+      //   },
+      // })
+      // localStorage.setItem('cookies',result.cookies)
+      // if(result.data.code==200) {
+      //   localStorage.setItem('userInfo',JSON.stringify(result.data.profile))
+      //   this.$router.push('/person')
+      // }
+      
     }
     // beforeEnter(el) {
     //   console.log(el)
