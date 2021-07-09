@@ -2,7 +2,7 @@
 <template>
   <div class="recommendSongContainer">
     <div class="header">
-        <img src="../../public/images/recommendSong/recommendSong.jpg">
+        <img src="/images/recommendSong/recommendSong.jpg">
         <div class="date">
             <span class="day">{{day}}/ </span>
             <span class="month">{{month}}</span>
@@ -65,15 +65,9 @@ export default {
   methods: {
     // 获取每日推荐的数据
     async getRecommendList() {
-        // let recommendListData = this.axios({
-        //     baseURL: "http://localhost:3000",
-        //     url: '/recommend/songs',
-        //     headers:{
-        //         cookie:localStorage.getItem('cookies')?localStorage.getItem('cookies').find(item=>item.indexOf('MUSIC_U')!==-1):''
-        //     }
-        // })
-        // this.recommendList = recommendListData.data.recommend
-        // console.log(this.recommendList)
+        let recommendListData = await this.request('/recommend/songs')
+        this.recommendList = recommendListData.data.recommend
+        console.log(this.recommendList)
     }
   }
 }
@@ -81,10 +75,15 @@ export default {
 </script>
 <style lang='scss' scoped>
 .recommendSongContainer {
+    position: fixed;
+    z-index: 99;
+    height: calc(100vh - 80px);
+    overflow: hidden;
     .header {
         position: relative;
         width: 100%;
         height: 300px;
+        
         img {
             width: 100%;
             height: 100%;
@@ -112,6 +111,7 @@ export default {
         padding: 0 20px;
         border-radius: 30px;
         background: #fff;
+        
         .listHeader {
             height: 80px;
             font-size: 14px;
@@ -121,7 +121,6 @@ export default {
             }
         }
         .listScroll{
-            height: calc(100vh - 380px);
             .scrollItem {
                 position: relative;
                 display: flex;

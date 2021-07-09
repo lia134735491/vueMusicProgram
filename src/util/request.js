@@ -10,12 +10,8 @@ const axiosInstance = axios.create({
 // axiosInstance.defaults.withCredentials = true
 // let intercepteor = 
 axiosInstance.interceptors.response.use(function(res) {
-    if(res.data.isLogin) {
-        console.log(res)
-        
-    }
-    console.log('拦截器:'+res)
-    console.log(res.headers)
+    
+    return res
 })
 // axiosInstance.interceptors.response.eject(intercepteor)
 function request(url,params={}) {
@@ -26,17 +22,21 @@ function request(url,params={}) {
             params,
             withCredentials: true
         })
+        if(params.isLogin) {
+            data.headers
+        }
+
        return data
 }
-axiosInstance({
-         baseURL: "http://localhost:3000",
-         url: '/login/cellphone',
-         params: {
-          phone: '15711140593', 
-          password: '123456yzy',
-          isLogin:true
-        },
-      }).then(function(res) {
-          console.log(res)
-      })
+// axiosInstance({
+//          baseURL: "http://localhost:3000",
+//          url: '/login/cellphone',
+//          params: {
+//           phone: '15711140593', 
+//           password: '123456yzy',
+//           isLogin:true
+//         },
+//       }).then(function(res) {
+//           console.log(res)
+//       })
 export default request

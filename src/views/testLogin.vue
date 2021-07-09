@@ -105,10 +105,10 @@ export default {
       //   },
       // })
       // localStorage.setItem('cookies',result.cookies)
-      // if(result.data.code==200) {
-      //   localStorage.setItem('userInfo',JSON.stringify(result.data.profile))
-      //   this.$router.push('/person')
-      // }
+      if(result.data.code==200) {
+        localStorage.setItem('userInfo',JSON.stringify(result.data.profile))
+        this.$router.push('/person')
+      }
       
     }
     // beforeEnter(el) {

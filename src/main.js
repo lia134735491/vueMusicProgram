@@ -6,9 +6,9 @@ import 'amfe-flexible'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import './assets/css/normalize.css'
-import animated from 'animate.css' 
+// import animated from 'animate.css' 
 import request from '@/util/request'
-Vue.use(animated)
+// Vue.use(animated)
 Vue.use(VueAxios, axios)
 Vue.prototype.request = request
 

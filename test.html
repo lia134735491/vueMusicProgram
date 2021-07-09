@@ -6,8 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    .a {
+        width: 50px;
+        height: 50px;
+        overflow: hidden;
+        border: 1px solid red;
+        white-space: nowrap;
+    }
+    .b {
+        /* display: inline-block; */
+        width: 30px;
+        height: 30px;
+        border: 1px solid blue;
+    }
+</style>
 <body>
-    <div>123456</div>
+    <div class="a">
+        <div>
+            <div class="b"></div>
+        <div class="b"></div>
+        <div class="b"></div>
+        </div>
+    </div>
     <script>
         let id
         document.getElementsByTagName('div')[0].onclick=function(){

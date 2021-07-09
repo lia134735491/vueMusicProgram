@@ -44,7 +44,10 @@ const routes = [
   },
   {
     path: '/recommendSong',
-    component: ()=>import('@/views/recommendSong.vue')
+    component: ()=>import('@/views/recommendSong.vue'),
+    meta:{
+      title: '歌曲列表'
+    }
   }
   // {
   //   path: '/about',

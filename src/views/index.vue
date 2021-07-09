@@ -1,4 +1,3 @@
-<!--  -->
 <template>
   <div>
     <van-swipe class="banner">
@@ -35,8 +34,8 @@
     <div class=recommendContainer>
       <nav-header title="推荐歌曲" nav="为你精心推荐"></nav-header>
       <div class="recommendScroll" >
-        <div class="parent" ref="recommend">
-          <div class="scrollItem" v-for="item in recommendData" :key="item.id">
+        <div class="parent" ref="recommend" @click="test">
+          <div class="scrollItem" v-for="item in recommendData" :key="item.id" ref="recommendItem">
             <img :src="item.picUrl" alt="">
             <span class="text">{{item.name}}</span>
           </div>
@@ -94,6 +93,7 @@ export default {
 
   mounted () {
     this.recommendScroll()
+    console.log(this.$refs.recommendItem)
   },
 
   methods: {
@@ -146,9 +146,6 @@ export default {
     // 推荐歌曲滚动
     recommendScroll() {
       let recommend = this.$refs.recommend;
-      this.$nextTick(function() {
-        console.log(window.getComputedStyle(this.$refs.recommend).width)
-      })
       let start
       let distance
       let distanceTatol = 0
@@ -175,7 +172,11 @@ export default {
     iflogin() {
       this.$router.push('/recommendSong')
 
+    },
+    test() {
+      console.log(this.$refs.recommendItem)
     }
+
   }
 }
 
@@ -219,10 +220,8 @@ export default {
     padding: 20px;
     .recommendScroll {
       width: 100%;
-      overflow: hidden;
-      
+      overflow: hidden;    
       height: 300px;
-      // display: flex;
       .parent {
         white-space: nowrap;
         display: flex;

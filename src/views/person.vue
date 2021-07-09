@@ -2,7 +2,7 @@
 <template>
   <div class="personalContainer">
     <div class="user-section">
-      <img class="bg" src="../../public/images/personal/bgImg2.jpg">
+      <img class="bg" src="/images/personal/bgImg2.jpg">
       <div class="user-info-box" @click="toLogin">
         <div class="portrait-box">
           <img class="portrait" :src="headerPhoto">
@@ -13,13 +13,13 @@
       </div>
 
       <div class="vip-card-box">
-        <img class="card-bg" src="../../public/images/personal/vip-card-bg.png" >
+        <img class="card-bg" src="/images/personal/vip-card-bg.png" >
         <div class="b-btn">
           立即开通
         </div>
         <div class="tit">
           <!-- 会员图标-->
-          <span class="iconfont icon-huiyuan-"></span>
+          <span class="iconfont icon-wangguan"></span>
           硅谷会员
         </div>
         <span class="e-m">atguigu Union</span>
@@ -100,13 +100,16 @@ export default {
 
   computed: {
     headerPhoto() {
-      return this.userInfo.avatarUrl?this.userInfo.avatarUrl:'../../static/images/personal/missing-face.png'
+     
+      return  this.userInfo.avatarUrl?this.userInfo.avatarUrl:require('../../public/images/personal/missing-face.png')
     },
   },
 
   created () {
     this.$store.commit('headerTitleChange','个人中心')
-    this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
+    if(JSON.parse(localStorage.getItem('userInfo'))) {
+      this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
+    }
     // if(this.userInfo) {
     //   this.getUserPlayList(this.userInfo.userId)
     // }
