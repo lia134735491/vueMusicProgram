@@ -100,7 +100,6 @@ export default {
 
   computed: {
     headerPhoto() {
-     
       return  this.userInfo.avatarUrl?this.userInfo.avatarUrl:require('../../public/images/personal/missing-face.png')
     },
   },
@@ -110,9 +109,6 @@ export default {
     if(JSON.parse(localStorage.getItem('userInfo'))) {
       this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
     }
-    // if(this.userInfo) {
-    //   this.getUserPlayList(this.userInfo.userId)
-    // }
   },
 
   mounted () {},
@@ -122,17 +118,6 @@ export default {
       this.$router.push('/login')  
     },
     
-    // 获取用户播放记录
-    // async getUserPlayList(userId) {
-    //   let userListData = await this.axios({
-    //     url:'/user/record',
-    //     baseURL: "http://localhost:3000",
-    //     params:{
-    //       uid:userId,
-    //       type:0
-    //     }
-    //   })
-    // }
   }
 }
 

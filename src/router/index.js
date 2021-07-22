@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import index from '@/views/index.vue'
 import video from '@/views/video.vue'
 import person from '@/views/person.vue'
+import song from '@/views/songDetail.vue'
 
 Vue.use(VueRouter)
 
@@ -12,18 +13,17 @@ const routes = [
     name: 'index',
     component: index,
     meta: {
-      title: '黑皮音乐'
-    },
-    children: [
-      
-    ]
+      title: '黑皮音乐',
+      tabberShow: true
+    }
   },
   {
     path: '/video',
     name: 'video',
     component: video,
     meta: {
-      title: '视频'
+      title: '视频',
+      tabberShow: true
     }
   },
   {
@@ -31,7 +31,8 @@ const routes = [
     name: 'person',
     component: person,
     meta: {
-      title: '个人中心'
+      title: '个人中心',
+      tabberShow: true
     },
   },
   {
@@ -48,6 +49,12 @@ const routes = [
     meta:{
       title: '歌曲列表'
     }
+  },
+  {
+    name: 'songDetail',
+    path: '/songDetail',
+    // component: ()=>import('@/views/songDetail.vue')
+    component: song
   }
   // {
   //   path: '/about',

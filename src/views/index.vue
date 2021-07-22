@@ -34,7 +34,7 @@
     <div class=recommendContainer>
       <nav-header title="推荐歌曲" nav="为你精心推荐"></nav-header>
       <div class="recommendScroll" >
-        <div class="parent" ref="recommend" @click="test">
+        <div class="parent" ref="recommend" >
           <div class="scrollItem" v-for="item in recommendData" :key="item.id" ref="recommendItem">
             <img :src="item.picUrl" alt="">
             <span class="text">{{item.name}}</span>
@@ -86,6 +86,8 @@ export default {
   computed: {},
 
   created () {
+
+    this.$store.commit('headerTitleChange','黑皮音乐')
     this.getBannerList();
     this.recommendList();
     this.paihangbang()
@@ -93,7 +95,6 @@ export default {
 
   mounted () {
     this.recommendScroll()
-    console.log(this.$refs.recommendItem)
   },
 
   methods: {
@@ -150,16 +151,26 @@ export default {
       let distance
       let distanceTatol = 0
       let move = 0
-      recommend.addEventListener('touchstart',function(e) {
+      let recmomendOverflowWidth = 0
+      recommend.addEventListener('touchstart',e=>{
+        let recommendItemWidth = getComputedStyle(this.$refs.recommendItem[0]).width
+        let recommendItemRight = getComputedStyle(this.$refs.recommendItem[0]).marginRight
+        let recommendTotalWidth = (parseInt(recommendItemWidth)+parseInt(recommendItemRight ))*this.$refs.recommendItem.length
+        recmomendOverflowWidth = recommendTotalWidth - parseInt(getComputedStyle(this.$refs.recommend).width)
         start = e.touches[0].clientX
+        console.log(recmomendOverflowWidth)
       },false)
 
       recommend.addEventListener('touchmove',function(e) {
         distance = e.touches[0].clientX-start
         move = distanceTatol + distance
         if(move>=0){
-          move=0
-          return
+          move = 0
+          
+        }
+        if(move<=-recmomendOverflowWidth ) {
+          move = -recmomendOverflowWidth
+
         }
         this.style.WebkitTransform = 'translateX('+move+'px)'
       })
@@ -172,11 +183,7 @@ export default {
     iflogin() {
       this.$router.push('/recommendSong')
 
-    },
-    test() {
-      console.log(this.$refs.recommendItem)
     }
-
   }
 }
 
@@ -243,22 +250,6 @@ export default {
         }
       }
       }
-      // .scrollItem {
-      //   width: 2rem;
-      //   margin-right: 0.2rem;
-      //   img {
-      //     width: 2rem;
-      //     height: 2rem;
-      //     border-radius: 0.1rem;
-      //   }
-      //   .text {
-      //     overflow: hidden;
-      //     text-overflow: ellipsis;
-      //     display: -webkit-box;
-      //     -webkit-box-orient: vertical;
-      //     -webkit-line-clamp: 2;
-      //   }
-      // }
     }
   }
   // 排行榜
